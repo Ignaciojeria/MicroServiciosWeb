@@ -8,18 +8,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import authentication.example.authenticationWebService.model.UserModel;
-import authentication.example.authenticationWebService.service.AuthService;
+import authentication.example.authenticationWebService.service.UserService;
 
 @RestController
 @CrossOrigin(origins = "*")
-public class AuthController {
+public class UserController {
 	
-	@Autowired AuthService authService;
+	@Autowired UserService userService;
 	
-	@PostMapping("auth")
-	public ResponseEntity<?> useAuth(@RequestBody UserModel userModel) {
-		return authService.validateCredentials(userModel);
+	@PostMapping("user")
+	public ResponseEntity<?> add(@RequestBody UserModel user){
+		return userService.add(user);
 	}
-
 
 }

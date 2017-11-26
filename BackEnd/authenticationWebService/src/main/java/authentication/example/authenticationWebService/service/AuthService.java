@@ -21,14 +21,11 @@ public class AuthService {
     private JwtTokenUtil jwtTokenUtil;
 	
 	public ResponseEntity<?> validateCredentials(UserModel userModel){
-		
 		User user=userRepository.findByUserNameAndPassword(userModel.getUserName(),userModel.getPassword());
-		
 		if(user!=null) {
 			final String token = jwtTokenUtil.setUserForClaimsAndgenerateToken(user);	
 			return new ResponseEntity<>(token,HttpStatus.CREATED);
 		}	
-		
 		return new ResponseEntity<>("user not found",HttpStatus.UNAUTHORIZED);
 	}
 
