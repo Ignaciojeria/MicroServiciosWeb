@@ -2,14 +2,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { AlumnoService } from './service/alumno.service';
 import { HttpModule } from '@angular/http';
-import { AuthComponent } from './auth/auth.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-
+import { ROUTES } from './app.router';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import { AuthService } from './service/auth.service';
+
+//Componentes
 import { UserComponent } from './user/user.component';
+import { AuthComponent } from './auth/auth.component';
+//Servicios
+import { AuthService } from './service/auth.service';
+import { UserService } from './service/user.service';
 
 @NgModule({
   declarations: [
@@ -20,11 +23,12 @@ import { UserComponent } from './user/user.component';
   imports: [
     BrowserModule,
     HttpModule,
+    ROUTES,
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [AlumnoService,
+  providers: [UserService,
               AuthService],
   bootstrap: [AppComponent]
 })

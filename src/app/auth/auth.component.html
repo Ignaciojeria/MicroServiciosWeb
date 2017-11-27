@@ -1,5 +1,6 @@
 <div fxLayoutAlign="center center" style="height:100vh;">
 <div style="width:400px;">
+		<div *ngIf="error" style="color:crimson"> error</div>
     		<div class="panel panel-default">
 			  	<div class="panel-heading">
 			    	<h3 class="panel-title">Iniciar sesión</h3>
@@ -15,7 +16,7 @@
 			    		</div>
 			    		<div >
 			    	    	<label>
-			    	    	¿eres nuevo? <span style="color:#0645AD">Crea una cuenta!</span>
+			    	    	¿eres nuevo? <span style="color:#0645AD" routerLink="/user">Crea una cuenta!</span>
 							</label>
 			    	    </div>
 			    		<button class="btn btn-lg btn-success btn-block" (click)="login()" value="Login">Submit</button>

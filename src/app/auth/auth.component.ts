@@ -11,10 +11,10 @@ import{FormBuilder,FormGroup,Validators} from '@angular/forms';
 export class AuthComponent {
   private loggedIn:boolean;
   private user:User;
-  
   private userFormGroup:FormGroup;
-  
+  private error:boolean;
   constructor(private authService:AuthService, private fb:FormBuilder ) { 
+    this.error=false;
     this.loggedIn=false;
     this.userFormGroup=fb.group({
       userName:'',
@@ -22,13 +22,9 @@ export class AuthComponent {
     });
   }
 
-  watch(){
-    console.log(this.userFormGroup.getRawValue());
-  }
-
   private login(){
     let user:User=this.userFormGroup.getRawValue();
-    this.authService.login(user).subscribe(rs=>{localStorage.setItem('token',rs); this.loggedIn=true;},err=>console.log('Usuario No encontrado'));
+    this.authService.login(user).subscribe(rs=>{localStorage.setItem('token',rs); this.loggedIn=true;},err=>{this.error=true;});
   }
 
   private logout(){

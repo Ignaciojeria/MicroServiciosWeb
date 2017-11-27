@@ -19,7 +19,7 @@ public class UserService {
 	}
 	
 	public ResponseEntity<?> add(UserModel user){
-		if(findByUserName(user.getUserName())!=null)
+		if(findByUserName(user.getUserName())!=null || user.getUserName().length()<3)
 		return new ResponseEntity<>("El nombre de usuario ya existe",HttpStatus.UNAUTHORIZED);
 		userRepository.save(new User(user.getUserName(),user.getPassword()));
 		return new ResponseEntity<>("Usuario creado con exito!",HttpStatus.CREATED);
